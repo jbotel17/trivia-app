@@ -14,6 +14,17 @@ import axios from "axios";
              categories.value = response.data.trivia_categories
          }
      }
+
+     const getQuestion = async (categoryID) => {
+         const response = await instance.get('api.php', {
+             params: {
+                 amount: 1,
+                 category: categoryID,
+             }
+         })
  
-     return { instance, categories, getCategories}
+         return response.data.results[0]
+     }
+ 
+     return { instance, categories, getCategories, getQuestion}
  }
